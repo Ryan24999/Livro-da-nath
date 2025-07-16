@@ -1,23 +1,159 @@
-Livro da Nathzinha 📖 body { margin: 0; background: #f5e6f0; font-family: 'Georgia', serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; } .book { width: 600px; height: 400px; perspective: 2000px; position: relative; } .page { width: 100%; height: 100%; background: white; position: absolute; top: 0; left: 0; transform-origin: left; transition: transform 1s; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); padding: 30px; box-sizing: border-box; } .page.flipped { transform: rotateY(-180deg); z-index: 0; } .page:nth-child(1) { z-index: 4; } .page:nth-child(2) { z-index: 3; } .page:nth-child(3) { z-index: 2; } .page:nth-child(4) { z-index: 1; } .controls { position: absolute; bottom: 20px; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; } button { background: #d36ba4; border: none; padding: 10px 20px; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; } h2 { margin-top: 0; color: #d36ba4; } 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Livro da Nathzinha 📖</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f5e6f0;
+      font-family: 'Georgia', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-Para minha Nathzinha 💖 
+    .book {
+      width: 90vw;
+      max-width: 600px;
+      height: 70vh;
+      max-height: 400px;
+      perspective: 2000px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
-Hoje é um daqueles dias em que eu queria te entregar algo que não cabe numa caixa, mas sim no coração.
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 30px;
+      box-sizing: border-box;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transform-origin: left;
+      transition: transform 1s;
+      backface-visibility: hidden;
+      border-radius: 8px;
+    }
 
-🌸 Um pequeno refúgio 
+    .page.flipped {
+      transform: rotateY(-180deg);
+      z-index: 0;
+    }
 
-Esse livrinho virtual é um pedacinho do que eu sinto por você. Cada página foi pensada pra te fazer sorrir aí do outro lado da tela.
+    /* Ordem das páginas para empilhar corretamente */
+    .page:nth-child(1) { z-index: 4; }
+    .page:nth-child(2) { z-index: 3; }
+    .page:nth-child(3) { z-index: 2; }
+    .page:nth-child(4) { z-index: 1; }
 
-🫶 O que só a gente entende 
+    .controls {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
 
-Tem coisas que nem todo mundo entende. Como o jeito que a gente se conecta, mesmo longe. Como seu nome me acalma. Como eu sinto que você é lar.
+    button {
+      background: #d36ba4;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    button:disabled {
+      background: #c1a4bf;
+      cursor: default;
+    }
+    button:hover:not(:disabled) {
+      background-color: #b05085;
+    }
 
-🎁 Um presente diferente 
+    h2 {
+      margin-top: 0;
+      color: #d36ba4;
+    }
 
-Agora, se prepara. Fiz algo com carinho e cuidado, só pra você. Vai com o coração aberto, tá?
+    a {
+      color: #d36ba4;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="book" id="book">
+    <div class="page" id="page1">
+      <h2>Para minha Nathzinha 💖</h2>
+      <p>Hoje é um daqueles dias em que eu queria te entregar algo que não cabe numa caixa, mas sim no coração.</p>
+    </div>
+    <div class="page" id="page2">
+      <h2>🌸 Um pequeno refúgio</h2>
+      <p>Esse livrinho virtual é um pedacinho do que eu sinto por você. Cada página foi pensada pra te fazer sorrir aí do outro lado da tela.</p>
+    </div>
+    <div class="page" id="page3">
+      <h2>🫶 O que só a gente entende</h2>
+      <p>Tem coisas que nem todo mundo entende. Como o jeito que a gente se conecta, mesmo longe. Como seu nome me acalma. Como eu sinto que você é lar.</p>
+    </div>
+    <div class="page" id="page4">
+      <h2>🎁 Um presente diferente</h2>
+      <p>Agora, se prepara. Fiz algo com carinho e cuidado, só pra você. Vai com o coração aberto, tá?</p>
+      <p><a href="https://ryan24999.github.io/nathzinha/" target="_blank" rel="noopener noreferrer">Clique aqui para abrir seu presente</a></p>
+    </div>
+  </div>
 
-Clique aqui para abrir seu presente
+  <div class="controls">
+    <button id="prevBtn" disabled>⬅️ Voltar</button>
+    <button id="nextBtn">Avançar ➡️</button>
+  </div>
 
-⬅️ Voltar Avançar ➡️ 
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentPage = 0;
 
-let currentPage = 0; const pages = document.querySelectorAll('.page'); function nextPage() { if (currentPage 0) { currentPage--; pages[currentPage].classList.remove('flipped'); } } 
+    function updateButtons() {
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = currentPage === pages.length;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < pages.length) {
+        pages[currentPage].classList.add('flipped');
+        currentPage++;
+        updateButtons();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        pages[currentPage].classList.remove('flipped');
+        updateButtons();
+      }
+    });
+
+    updateButtons();
+  </script>
+</body>
+  </html>
