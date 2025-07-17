@@ -1,63 +1,97 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Livro da Nathzinha 💖</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://www.turnjs.com/lib/turn.min.js"></script>
   <style>
     body {
-      background: #fefaf4;
+      background-color: #fffaf0;
+      font-family: 'Georgia', serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: 'Georgia', serif;
     }
 
     #flipbook {
-      width: 600px;
-      height: 400px;
+      width: 90vw;
+      max-width: 600px;
+      height: 80vh;
+      max-height: 500px;
     }
 
     .page {
-      background: #fffaf0;
+      background: #fffdf8;
       border: 1px solid #ddd;
-      padding: 20px;
+      padding: 40px 30px;
       box-sizing: border-box;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      color: #333;
+      font-size: 18px;
+      line-height: 1.6;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .page h2 {
-      color: #5b3d28;
+      margin-top: 0;
+      color: #c71585;
     }
 
-    .page p {
-      font-size: 1.2em;
-      color: #3e2b1f;
-      line-height: 1.5em;
+    .page a {
+      color: #c71585;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .page a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        font-size: 16px;
+        padding: 25px 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="flipbook">
+    <div class="page">
+      <h2>Capa</h2>
+      <p><strong>Livro da Nathzinha 💖</strong><br />
+      Feito com carinho pra você.</p>
+    </div>
+    <div class="page">
+      <h2>Página 1</h2>
+      <p>Mesmo longe, você é a lembrança mais doce do meu dia.</p>
+    </div>
+    <div class="page">
+      <h2>Página 2</h2>
+      <p>Você tornou minha vida mais leve, divertida e cheia de significado.</p>
+    </div>
+    <div class="page">
+      <h2>Página 3</h2>
+      <p>Este é só o começo do que ainda quero viver com você. 💖</p>
+    </div>
+    <div class="page">
+      <h2>Fim</h2>
+      <p>Com amor, de alguém que te admira mais a cada dia.</p>
+      <p><a href="https://ryan24999.github.io/nathzinha" target="_blank">🌸 Clique aqui para ver uma surpresa especial 🌸</a></p>
+    </div>
+  </div>
 
-<div id="flipbook">
-  <div class="page"><h2>Capa</h2><p>Livro da Nathzinha 💖<br>Feito com carinho pra você.</p></div>
-  <div class="page"><h2>Página 1</h2><p>Mesmo longe, você é a lembrança mais doce do meu dia.</p></div>
-  <div class="page"><h2>Página 2</h2><p>Você tornou minha vida mais leve, divertida e cheia de significado.</p></div>
-  <div class="page"><h2>Página 3</h2><p>Este é só o começo do que ainda quero viver com você. 💖</p></div>
-  <div class="page"><h2>Fim</h2><p>Com amor, de alguém que te admira mais a cada dia.</p></div>
-</div>
-
-<script>
-  $("#flipbook").turn({
-    width: 600,
-    height: 400,
-    autoCenter: true
-  });
-</script>
-
+  <script>
+    $('#flipbook').turn({
+      width: 600,
+      height: 400,
+      autoCenter: true,
+      elevation: 50,
+      gradients: true
+    });
+  </script>
 </body>
 </html>
