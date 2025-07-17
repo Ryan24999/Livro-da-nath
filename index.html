@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Livro da Nathzinha</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Livro da Nathzinha 💖</title>
   <style>
     body {
       margin: 0;
-      background: #e6e2d3;
-      font-family: 'Georgia', serif;
+      background: #f2e9dc;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
     }
 
     .book {
       width: 90vw;
-      max-width: 800px;
-      height: 500px;
+      max-width: 700px;
+      height: 80vh;
       perspective: 2000px;
       position: relative;
     }
@@ -25,115 +27,108 @@
     .page {
       width: 100%;
       height: 100%;
-      background: linear-gradient(to right, #fffdfa 49%, #f4f0e5 51%);
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      border-radius: 5px;
-      overflow: hidden;
+      background: #fffbe6;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
       position: absolute;
-      transition: transform 1s ease, z-index 0.3s ease;
-      transform-origin: left center;
-      padding: 40px;
+      top: 0;
+      left: 0;
+      padding: 40px 30px;
       box-sizing: border-box;
-      backface-visibility: hidden;
+      transform-origin: left center;
+      transition: transform 1s ease;
+      border-radius: 10px;
     }
 
-    .page:nth-child(even) {
-      transform-origin: right center;
-      background: linear-gradient(to left, #fffdfa 49%, #f4f0e5 51%);
-    }
+    .page:nth-child(1) { z-index: 4; }
+    .page:nth-child(2) { z-index: 3; }
+    .page:nth-child(3) { z-index: 2; }
+    .page:nth-child(4) { z-index: 1; }
 
-    .page h2 {
-      margin-top: 0;
-      font-size: 22px;
-      color: #5a4334;
-    }
-
-    .page p {
-      font-size: 17px;
-      line-height: 1.6;
-      color: #4d3b2a;
+    .flipped {
+      transform: rotateY(-180deg);
+      z-index: 0 !important;
     }
 
     .controls {
       position: absolute;
-      bottom: 15px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       gap: 20px;
     }
 
-    .controls button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #8b6f47;
+    .btn {
+      padding: 8px 18px;
+      background: #c89b7b;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    .controls button:hover {
-      background: #6f5635;
+    .btn:hover {
+      background: #a57a5a;
+    }
+
+    .page h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #5b3d28;
+    }
+
+    .page p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #3e2b1f;
     }
   </style>
 </head>
 <body>
+
   <div class="book" id="book">
     <div class="page">
-      <h2>Querida Nathzinha 💖</h2>
-      <p>Essa página abre como o meu coração: cheio de amor por você. Cada palavra aqui é um pedacinho do que sinto.</p>
+      <h2>Capa 💌</h2>
+      <p>Bem-vinda ao “Livro da Nathzinha”. Aqui guardo o carinho e as palavras que gostaria de te dizer todos os dias.</p>
     </div>
     <div class="page">
-      <h2>Mesmo de longe</h2>
-      <p>Não importa a distância. Meu carinho te alcança, porque o que temos não depende de presença, e sim de conexão.</p>
+      <h2>Página 1</h2>
+      <p>Você é o meu pensamento favorito do dia. Mesmo longe, sua presença ilumina meu mundo.</p>
     </div>
     <div class="page">
-      <h2>Feito com cuidado</h2>
-      <p>Montei esse livrinho pra te lembrar o quanto você é especial. Espero que sorria ao virar cada página.</p>
+      <h2>Página 2</h2>
+      <p>Te conhecer foi um presente. Com você, tudo é mais leve, bonito e cheio de sentido.</p>
     </div>
     <div class="page">
-      <h2>Seu presente 🎁</h2>
-      <p>Você chegou até aqui, então... <br><a href="https://seulink.com/presente" style="color: #3e2a1a;">clique aqui para descobrir seu presente</a></p>
+      <h2>Última Página</h2>
+      <p>Obrigado por existir. Este pequeno livro é só o começo de tudo que quero compartilhar com você 💖</p>
     </div>
   </div>
 
   <div class="controls">
-    <button onclick="prevPage()">⬅ Voltar</button>
-    <button onclick="nextPage()">Avançar ➡</button>
+    <button class="btn" onclick="goBack()">⬅️ Voltar</button>
+    <button class="btn" onclick="goNext()">Avançar ➡️</button>
   </div>
 
   <script>
-    const pages = document.querySelectorAll('.page');
+    const pages = document.querySelectorAll(".page");
     let current = 0;
 
-    function updatePages() {
-      pages.forEach((page, i) => {
-        if (i <= current) {
-          page.style.transform = "rotateY(-180deg)";
-          page.style.zIndex = pages.length - i;
-        } else {
-          page.style.transform = "rotateY(0deg)";
-          page.style.zIndex = i;
-        }
-      });
-    }
-
-    function nextPage() {
-      if (current < pages.length - 1) {
+    function goNext() {
+      if (current < pages.length) {
+        pages[current].classList.add("flipped");
         current++;
-        updatePages();
       }
     }
 
-    function prevPage() {
+    function goBack() {
       if (current > 0) {
         current--;
-        updatePages();
+        pages[current].classList.remove("flipped");
       }
     }
-
-    updatePages(); // Inicial
   </script>
+
 </body>
 </html>
