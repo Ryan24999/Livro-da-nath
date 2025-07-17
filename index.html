@@ -1,159 +1,139 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Livro da Nathzinha 📖</title>
+  <meta charset="UTF-8">
+  <title>Livro da Nathzinha</title>
   <style>
     body {
       margin: 0;
-      background: #f5e6f0;
+      background: #e6e2d3;
       font-family: 'Georgia', serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
 
     .book {
       width: 90vw;
-      max-width: 600px;
-      height: 70vh;
-      max-height: 400px;
+      max-width: 800px;
+      height: 500px;
       perspective: 2000px;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
     }
 
     .page {
       width: 100%;
       height: 100%;
+      background: linear-gradient(to right, #fffdfa 49%, #f4f0e5 51%);
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      border-radius: 5px;
+      overflow: hidden;
       position: absolute;
-      top: 0;
-      left: 0;
-      padding: 30px;
+      transition: transform 1s ease, z-index 0.3s ease;
+      transform-origin: left center;
+      padding: 40px;
       box-sizing: border-box;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      transform-origin: left;
-      transition: transform 1s;
       backface-visibility: hidden;
-      border-radius: 8px;
     }
 
-    .page.flipped {
-      transform: rotateY(-180deg);
-      z-index: 0;
+    .page:nth-child(even) {
+      transform-origin: right center;
+      background: linear-gradient(to left, #fffdfa 49%, #f4f0e5 51%);
     }
 
-    /* Ordem das páginas para empilhar corretamente */
-    .page:nth-child(1) { z-index: 4; }
-    .page:nth-child(2) { z-index: 3; }
-    .page:nth-child(3) { z-index: 2; }
-    .page:nth-child(4) { z-index: 1; }
+    .page h2 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #5a4334;
+    }
+
+    .page p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #4d3b2a;
+    }
 
     .controls {
       position: absolute;
-      bottom: 10px;
-      width: 100%;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      box-sizing: border-box;
+      gap: 20px;
     }
 
-    button {
-      background: #d36ba4;
-      border: none;
+    .controls button {
       padding: 10px 20px;
-      color: white;
       font-size: 16px;
+      background: #8b6f47;
+      color: white;
+      border: none;
       border-radius: 5px;
       cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    button:disabled {
-      background: #c1a4bf;
-      cursor: default;
-    }
-    button:hover:not(:disabled) {
-      background-color: #b05085;
     }
 
-    h2 {
-      margin-top: 0;
-      color: #d36ba4;
-    }
-
-    a {
-      color: #d36ba4;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    a:hover {
-      text-decoration: underline;
+    .controls button:hover {
+      background: #6f5635;
     }
   </style>
 </head>
 <body>
   <div class="book" id="book">
-    <div class="page" id="page1">
-      <h2>Para minha Nathzinha 💖</h2>
-      <p>Hoje é um daqueles dias em que eu queria te entregar algo que não cabe numa caixa, mas sim no coração.</p>
+    <div class="page">
+      <h2>Querida Nathzinha 💖</h2>
+      <p>Essa página abre como o meu coração: cheio de amor por você. Cada palavra aqui é um pedacinho do que sinto.</p>
     </div>
-    <div class="page" id="page2">
-      <h2>🌸 Um pequeno refúgio</h2>
-      <p>Esse livrinho virtual é um pedacinho do que eu sinto por você. Cada página foi pensada pra te fazer sorrir aí do outro lado da tela.</p>
+    <div class="page">
+      <h2>Mesmo de longe</h2>
+      <p>Não importa a distância. Meu carinho te alcança, porque o que temos não depende de presença, e sim de conexão.</p>
     </div>
-    <div class="page" id="page3">
-      <h2>🫶 O que só a gente entende</h2>
-      <p>Tem coisas que nem todo mundo entende. Como o jeito que a gente se conecta, mesmo longe. Como seu nome me acalma. Como eu sinto que você é lar.</p>
+    <div class="page">
+      <h2>Feito com cuidado</h2>
+      <p>Montei esse livrinho pra te lembrar o quanto você é especial. Espero que sorria ao virar cada página.</p>
     </div>
-    <div class="page" id="page4">
-      <h2>🎁 Um presente diferente</h2>
-      <p>Agora, se prepara. Fiz algo com carinho e cuidado, só pra você. Vai com o coração aberto, tá?</p>
-      <p><a href="https://ryan24999.github.io/nathzinha/" target="_blank" rel="noopener noreferrer">Clique aqui para abrir seu presente</a></p>
+    <div class="page">
+      <h2>Seu presente 🎁</h2>
+      <p>Você chegou até aqui, então... <br><a href="https://seulink.com/presente" style="color: #3e2a1a;">clique aqui para descobrir seu presente</a></p>
     </div>
   </div>
 
   <div class="controls">
-    <button id="prevBtn" disabled>⬅️ Voltar</button>
-    <button id="nextBtn">Avançar ➡️</button>
+    <button onclick="prevPage()">⬅ Voltar</button>
+    <button onclick="nextPage()">Avançar ➡</button>
   </div>
 
   <script>
     const pages = document.querySelectorAll('.page');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentPage = 0;
+    let current = 0;
 
-    function updateButtons() {
-      prevBtn.disabled = currentPage === 0;
-      nextBtn.disabled = currentPage === pages.length;
+    function updatePages() {
+      pages.forEach((page, i) => {
+        if (i <= current) {
+          page.style.transform = "rotateY(-180deg)";
+          page.style.zIndex = pages.length - i;
+        } else {
+          page.style.transform = "rotateY(0deg)";
+          page.style.zIndex = i;
+        }
+      });
     }
 
-    nextBtn.addEventListener('click', () => {
-      if (currentPage < pages.length) {
-        pages[currentPage].classList.add('flipped');
-        currentPage++;
-        updateButtons();
+    function nextPage() {
+      if (current < pages.length - 1) {
+        current++;
+        updatePages();
       }
-    });
+    }
 
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 0) {
-        currentPage--;
-        pages[currentPage].classList.remove('flipped');
-        updateButtons();
+    function prevPage() {
+      if (current > 0) {
+        current--;
+        updatePages();
       }
-    });
+    }
 
-    updateButtons();
+    updatePages(); // Inicial
   </script>
 </body>
-  </html>
+</html>
