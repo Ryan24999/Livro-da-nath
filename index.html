@@ -2,153 +2,62 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Livro 3D da Nathzinha 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Livro da Nathzinha 💖</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
   <style>
     body {
-      margin: 0;
-      background: #f4eee8;
-      height: 100vh;
+      background: #fefaf4;
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: hidden;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
       font-family: 'Georgia', serif;
     }
 
-    .scene {
-      width: 90vw;
-      max-width: 1000px;
-      height: 70vh;
-      perspective: 2000px;
-    }
-
-    .book {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
+    #flipbook {
+      width: 600px;
+      height: 400px;
     }
 
     .page {
-      position: absolute;
-      width: 50%;
-      height: 100%;
       background: #fffaf0;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-      padding: 30px;
+      border: 1px solid #ddd;
+      padding: 20px;
       box-sizing: border-box;
-      transform-origin: left;
-      transition: transform 1s ease;
-      border: 1px solid #ccc;
-    }
-
-    .page.left {
-      left: 0;
-      z-index: 2;
-    }
-
-    .page.right {
-      left: 50%;
-      transform-origin: right;
-      z-index: 1;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     .page h2 {
-      margin-top: 0;
-      font-size: 1.4em;
       color: #5b3d28;
     }
 
     .page p {
       font-size: 1.2em;
-      line-height: 1.6;
       color: #3e2b1f;
-    }
-
-    .btns {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-      z-index: 10;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      background: #c89b7b;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: #a57a5a;
-    }
-
-    .flipped {
-      transform: rotateY(-180deg);
-      z-index: 0 !important;
+      line-height: 1.5em;
     }
   </style>
 </head>
 <body>
-  <div class="scene">
-    <div class="book" id="book">
-      <div class="page left" id="leftPage">
-        <h2>Capa 💌</h2>
-        <p>Bem-vinda ao Livro da Nathzinha. Este livro é só seu, feito com carinho.</p>
-      </div>
-      <div class="page right" id="rightPage">
-        <h2>Página 1</h2>
-        <p>Mesmo longe, você é a lembrança mais doce do meu dia.</p>
-      </div>
-    </div>
-    <div class="btns">
-      <button class="btn" onclick="goBack()">⬅️ Voltar</button>
-      <button class="btn" onclick="goNext()">Avançar ➡️</button>
-    </div>
-  </div>
 
-  <script>
-    let flipped = false;
-    const leftPage = document.getElementById("leftPage");
-    const rightPage = document.getElementById("rightPage");
+<div id="flipbook">
+  <div class="page"><h2>Capa</h2><p>Livro da Nathzinha 💖<br>Feito com carinho pra você.</p></div>
+  <div class="page"><h2>Página 1</h2><p>Mesmo longe, você é a lembrança mais doce do meu dia.</p></div>
+  <div class="page"><h2>Página 2</h2><p>Você tornou minha vida mais leve, divertida e cheia de significado.</p></div>
+  <div class="page"><h2>Página 3</h2><p>Este é só o começo do que ainda quero viver com você. 💖</p></div>
+  <div class="page"><h2>Fim</h2><p>Com amor, de alguém que te admira mais a cada dia.</p></div>
+</div>
 
-    function goNext() {
-      if (!flipped) {
-        rightPage.classList.add("flipped");
-        flipped = true;
-        rightPage.innerHTML = `
-          <h2>Página 2</h2>
-          <p>Você tornou minha vida mais leve, divertida e cheia de significado.</p>
-        `;
-        leftPage.innerHTML = `
-          <h2>Página 3</h2>
-          <p>Este é só o começo do que ainda quero viver com você. 💖</p>
-        `;
-      }
-    }
+<script>
+  $("#flipbook").turn({
+    width: 600,
+    height: 400,
+    autoCenter: true
+  });
+</script>
 
-    function goBack() {
-      if (flipped) {
-        rightPage.classList.remove("flipped");
-        flipped = false;
-        rightPage.innerHTML = `
-          <h2>Página 1</h2>
-          <p>Mesmo longe, você é a lembrança mais doce do meu dia.</p>
-        `;
-        leftPage.innerHTML = `
-          <h2>Capa 💌</h2>
-          <p>Bem-vinda ao Livro da Nathzinha. Este livro é só seu, feito com carinho.</p>
-        `;
-      }
-    }
-  </script>
 </body>
 </html>
